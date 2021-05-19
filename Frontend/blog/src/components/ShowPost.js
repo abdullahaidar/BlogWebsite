@@ -2,8 +2,8 @@ import React from 'react'
 
 export const ShowPost = () => {
     return (
-        <div>
-            show one post
-        </div>
+        <>
+            <h1> SHOW ALL POSTS</h1>
+        </>
     )
 }
