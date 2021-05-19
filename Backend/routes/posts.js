@@ -4,10 +4,11 @@ const express = require('express');
 const router = express.Router();
 
 // Import
-const { getPosts } = require('../controller/postsController')
+const { getPosts, addPost } = require('../controller/postsController')
 
 
-router.route('/').get(getPosts);
+router.route('/').get(getPosts)
+    .post(addPost);
 
 //export router to app.js
 module.exports = router;

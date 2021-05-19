@@ -13,4 +13,19 @@ exports.getPosts = (req, res) => {
       console.log(error);
       next(error);
     }
+}
+  
+// add to database
+exports.addPost = (req, res, next) => {
+  try {
+    const post = req.body
+    db.get('posts')
+      .push(post)
+      .last()
+      .assign({ id: Date.now().toString() }).write()
+    res.status(201).send(post)
+  } catch (error) {
+    console.log(error);
+    next(error);
   }
+}
