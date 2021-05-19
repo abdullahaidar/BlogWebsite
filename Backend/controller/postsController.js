@@ -29,3 +29,16 @@ exports.addPost = (req, res, next) => {
     next(error);
   }
 }
+
+// DELETE 
+exports.deletePost = (req, res, next) => {
+  try {
+    const inputId = req.body.id;
+    db.get('posts').remove({ id: inputId }).write();
+    res.status(200).send('Success')
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+
+}

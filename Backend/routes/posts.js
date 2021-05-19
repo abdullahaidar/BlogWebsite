@@ -4,11 +4,12 @@ const express = require('express');
 const router = express.Router();
 
 // Import
-const { getPosts, addPost } = require('../controller/postsController')
+const { getPosts, addPost, deletePost } = require('../controller/postsController')
 
 
 router.route('/').get(getPosts)
-    .post(addPost);
+    .post(addPost)
+    .delete(deletePost)
 
 //export router to app.js
 module.exports = router;
