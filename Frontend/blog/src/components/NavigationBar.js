@@ -8,10 +8,10 @@ export const NavigationBar = () => {
         <nav>
           <ul>
             <li>
-              <Link to='/'>All Posts</Link>
+              <Link to='/'>Posts</Link>
             </li>
             <li>
-              <Link to='/new-post'>Add New Post</Link>
+              <Link to='/new'>Add New Post</Link>
             </li>
           </ul>
         </nav>

@@ -18,11 +18,6 @@ exports.getPosts = (req, res) => {
 // add to database
 exports.addPost = (req, res, next) => {
   try {
-
-    // ASK JAN HOW TO GET 2 INPUT VALUES
-    // const title = req.body.title;  
-    // const text = req.body.textarea;
-
     const post = req.body
     db.get('posts')
       .push(post)
