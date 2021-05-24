@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { NavigationBar } from './components/NavigationBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+
+// import components
+import { NavigationBar } from './components/NavigationBar';
 import Post from './components/Post';
 import AddPost from './components/AddPost';
 import PostList from './components/PostList';
@@ -38,12 +41,14 @@ const App = () => {
             <Router>
                 <NavigationBar />
                 <Switch>
-                    <Route path='/new'>
-                        <AddPost addPost={addPost} post={{ title: '', content: '' }} />
-                    </Route>
                     <Route exact path='/'>
                         <PostList posts={posts} />
+                    </Route>
+                    <Route path='/post/:id'>
                         <Post posts={posts} />
+                    </Route>
+                    <Route path='/new'>
+                        <AddPost addPost={addPost} post={{ title: '', content: '' }} />
                     </Route>
                 </Switch>
             </Router>

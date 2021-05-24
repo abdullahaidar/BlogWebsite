@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Card, Button } from 'react-bootstrap';
 import './PostList.css';
 
 const PostList = (props) => {
@@ -11,11 +12,13 @@ const PostList = (props) => {
                 <ul className='flex'>
                     {props.posts.map((element, index) =>
                         <li key={index}>
-                            <Card style={{ width: '50rem', margin: '1rem' }}>
+                            <Card style={{ margin: '1rem' }}>
                                 <Card.Body>
                                     <Card.Title>{element.title}</Card.Title>
                                     <Card.Text>{element.content} </Card.Text>
-                                    <Button  className='btn' variant="primary">Read More</Button>
+                                    <Link to={`/post/${element.id}`}>
+                                        <Button className='btn' variant="primary" >Read More</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </li>
