@@ -7,12 +7,13 @@ import { NavigationBar } from './components/NavigationBar';
 import Post from './components/Post';
 import AddPost from './components/AddPost';
 import PostList from './components/PostList';
+import EditPost from './components/EditPost';
 
 
 const axios = require('axios').default;
 
 
-const App = () => {
+const App = (props) => {
 
     const [posts, setPosts] = useState([]);
 
@@ -36,19 +37,38 @@ const App = () => {
         }
     }
 
+    const deletePost = async (id) => {
+        // console.log(id);
+        try {
+            axios.delete('http://localhost:3001/posts', { data: { "id": id } }).then(() => sendGetRequest())
+        } catch (error) {
+        }
+    }
+
+    const updatePost = async (post) => {
+        try {
+            axios.post('http://localhost:3001/posts/update', { "title": post.title, "id": post.id, "content": post.content }).then(() => sendGetRequest())
+        } catch (error) {
+
+        }
+    }
+
     return (
         <div>
             <Router>
                 <NavigationBar />
                 <Switch>
                     <Route exact path='/'>
-                        <PostList posts={posts} />
+                        <PostList posts={posts} deletePost={deletePost} />
                     </Route>
                     <Route path='/post/:id'>
                         <Post posts={posts} />
                     </Route>
                     <Route path='/new'>
                         <AddPost addPost={addPost} post={{ title: '', content: '' }} />
+                    </Route>
+                    <Route path='/edit' >
+                        <EditPost posts={posts} updatePost={updatePost} />
                     </Route>
                 </Switch>
             </Router>

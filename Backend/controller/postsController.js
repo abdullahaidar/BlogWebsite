@@ -33,12 +33,30 @@ exports.addPost = (req, res, next) => {
 // DELETE 
 exports.deletePost = (req, res, next) => {
   try {
-    const inputId = req.body.id;
+
+    const inputId = req.body.id
     db.get('posts').remove({ id: inputId }).write();
     res.status(200).send('Success')
   } catch (error) {
     console.log(error);
     next(error);
   }
-
 }
+//Update post
+exports.updatePost = (req, res, next) => {
+  try {
+    const postId = req.body.id;
+    const post = db.get("posts").find({ id: postId }).value();
+    db.get("posts")
+      .find({ id: postId })
+      .assign({
+        title: req.body.title,
+        content: req.body.content,
+      })
+      .write();
+    res.status(200).send(post);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};

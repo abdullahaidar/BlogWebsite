@@ -1,10 +1,11 @@
-import { Card, Container } from 'react-bootstrap';
+import { Card, Container, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 
 const Post = (props) => {
 
     const { id } = useParams()
+
     const post = props.posts.find(post => post.id == id)
 
     return (
@@ -23,3 +24,4 @@ const Post = (props) => {
 }
 
 export default Post;
+
