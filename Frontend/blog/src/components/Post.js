@@ -1,5 +1,5 @@
 import { Card, Container, Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 
 const Post = (props) => {
@@ -19,6 +19,8 @@ const Post = (props) => {
                 </Card>
                 : <h1>no posts</h1>
             }
+            <Link to={`/edit/${post.id}`}><Button className='btn-edit'>Edit Post</Button></Link>
+
         </Container>
     )
 }

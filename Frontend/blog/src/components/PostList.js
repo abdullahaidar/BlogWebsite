@@ -11,9 +11,8 @@ const PostList = (props) => {
     }
 
     return (
-        <Container >
-            <Row >
-                <ul className='flex'>
+        <Container>
+                <ul className='list'>
                     {props.posts ? props.posts.map((element, index) =>
                         <li key={index}>
                             <Card style={{ margin: '1rem' }}>
@@ -31,7 +30,6 @@ const PostList = (props) => {
                         : <h1>There are no posts</h1>
                     }
                 </ul>
-            </Row>
         </Container>
     )
 }

@@ -1,7 +1,5 @@
-.flex{
-    display:flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+.list{
+    display:grid;
     margin:1.5rem;
     list-style: none;
 }
@@ -20,3 +18,4 @@
 .btn-edit{
     margin-left: 1rem;
 }
+
