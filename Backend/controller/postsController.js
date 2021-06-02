@@ -11,7 +11,6 @@ exports.getPosts = async (req, res, next) => {
   }
 }
 
-
 // ADD POST
 exports.addPost = async (req, res, next) => {
   try {
@@ -27,7 +26,7 @@ exports.addPost = async (req, res, next) => {
 exports.deletePost = async (req, res, next) => {
   const { id } = req.params
   try {
-    const post = await post.findByIdAndDelete(id)
+    const post = await Post.findByIdAndDelete(id)
     res.status(200).send('Success')
   } catch (error) {
     console.log(error);
@@ -38,8 +37,9 @@ exports.deletePost = async (req, res, next) => {
 // UPDATE POST
 exports.updatePost = async (req, res, next) => {
   const { id } = req.params
+  console.log(id);
   try {
-    const post = await post.findByIdAndUpdate(id, req.body, { new: true })
+    const post = await Post.findByIdAndUpdate(id, req.body, { new: true })
     res.status(200).send(post);
   } catch (error) {
     next(error);

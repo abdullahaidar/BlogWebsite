@@ -38,16 +38,17 @@ const App = (props) => {
     }
 
     const deletePost = async (id) => {
-        // console.log(id);
+        console.log(id);
         try {
-            axios.delete('http://localhost:3001/posts', { data: { "id": id } }).then(() => sendGetRequest())
+            axios.delete(`http://localhost:3001/posts/${id}`).then(() => sendGetRequest())
         } catch (error) {
         }
     }
 
     const updatePost = async (post) => {
+        console.log(post._id)
         try {
-            axios.post('http://localhost:3001/posts/update', { "title": post.title, "id": post.id, "content": post.content }).then(() => sendGetRequest())
+            axios.post(`http://localhost:3001/posts/${post._id}`, { "title": post.title, "content": post.content }).then(() => sendGetRequest())
         } catch (error) {
 
         }

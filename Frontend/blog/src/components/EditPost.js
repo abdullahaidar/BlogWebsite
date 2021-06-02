@@ -23,8 +23,8 @@ const EditPost = (props) => {
     console.log(id)
 
     useEffect(() => {
-        console.log('this works')
-        const findPost = props.posts.find(post => post.id == id);
+        //console.log('this works')
+        const findPost = props.posts.find(post => post._id == id);
         setPost(findPost)
     }, [])
 

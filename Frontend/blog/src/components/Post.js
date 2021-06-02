@@ -6,7 +6,7 @@ const Post = (props) => {
 
     const { id } = useParams()
 
-    const post = props.posts.find(post => post.id == id)
+    const post = props.posts.find(post => post._id == id)
 
     return (
         <Container>
@@ -19,7 +19,7 @@ const Post = (props) => {
                 </Card>
                 : <h1>no posts</h1>
             }
-            <Link to={`/edit/${post.id}`}><Button className='btn-edit'>Edit Post</Button></Link>
+            <Link to={`/edit/${post._id}`}><Button className='btn-edit'>Edit Post</Button></Link>
 
         </Container>
     )

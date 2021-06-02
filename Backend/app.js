@@ -22,8 +22,8 @@ mongoose.connection.on("open", function () {
   console.log("Database connection established");
 });
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
 
 

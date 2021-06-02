@@ -7,7 +7,7 @@ const router = express.Router();
 const { getPosts, addPost, deletePost, updatePost } = require('../controller/postsController')
 
 
-router.route('/posts')
+router.route('/')
     .get(getPosts)
     .post(addPost)
 

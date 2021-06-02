@@ -4,9 +4,10 @@ import { Container, Row, Card, Button } from 'react-bootstrap';
 import './PostList.css';
 
 const PostList = (props) => {
-        console.log(props.posts)
+        // console.log(props.posts)
 
     const deleteHandel = (id) => {
+        console.log(id);
         props.deletePost(id);
     }
 
@@ -19,11 +20,11 @@ const PostList = (props) => {
                                 <Card.Body>
                                     <Card.Title>{element.title}</Card.Title>
                                     <Card.Text>{element.content} </Card.Text>
-                                    <Link to={`/post/${element.id}`}>
+                                    <Link to={`/post/${element._id}`}>
                                         <Button className='btn' variant="primary" >Read More</Button>
                                     </Link>
-                                    <Link to={`/edit/${element.id}`}><Button className='btn-edit'>Edit Post</Button></Link>
-                                    <Button className='btn-edit' onClick={() => deleteHandel(element.id)}>Delete Post</Button>
+                                    <Link to={`/edit/${element._id}`}><Button className='btn-edit'>Edit Post</Button></Link>
+                                    <Button className='btn-edit' onClick={() => deleteHandel(element._id)}>Delete Post</Button>
                                 </Card.Body>
                             </Card>
                         </li>)
