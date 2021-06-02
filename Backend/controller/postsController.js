@@ -1,62 +1,47 @@
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('data/db.json');
-const db = low(adapter);
+const Post = require('../models/Post');
 
-//  controller
-exports.getPosts = (req, res) => {
+
+//  READ POSTS
+exports.getPosts = async (req, res, next) => {
   try {
-    // get all data
-    const posts = db.get('posts').value();
+    const posts = await Post.find()
     res.status(200).send(posts);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 }
 
-// add to database
-exports.addPost = (req, res, next) => {
+
+// ADD POST
+exports.addPost = async (req, res, next) => {
   try {
-    const post = req.body
-    db.get('posts')
-      .push(post)
-      .last()
-      .assign({ id: Date.now().toString() }).write()
+    const post = new Post(req.body);
+    await post.save()
     res.status(201).send(post)
   } catch (error) {
-    console.log(error);
     next(error);
   }
 }
 
-// DELETE 
-exports.deletePost = (req, res, next) => {
+// DELETE POST
+exports.deletePost = async (req, res, next) => {
+  const { id } = req.params
   try {
-
-    const inputId = req.body.id
-    db.get('posts').remove({ id: inputId }).write();
+    const post = await post.findByIdAndDelete(id)
     res.status(200).send('Success')
   } catch (error) {
     console.log(error);
     next(error);
   }
 }
-//Update post
-exports.updatePost = (req, res, next) => {
+
+// UPDATE POST
+exports.updatePost = async (req, res, next) => {
+  const { id } = req.params
   try {
-    const postId = req.body.id;
-    const post = db.get("posts").find({ id: postId }).value();
-    db.get("posts")
-      .find({ id: postId })
-      .assign({
-        title: req.body.title,
-        content: req.body.content,
-      })
-      .write();
+    const post = await post.findByIdAndUpdate(id, req.body, { new: true })
     res.status(200).send(post);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

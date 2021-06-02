@@ -7,11 +7,13 @@ const router = express.Router();
 const { getPosts, addPost, deletePost, updatePost } = require('../controller/postsController')
 
 
-router.route('/').get(getPosts)
+router.route('/posts')
+    .get(getPosts)
     .post(addPost)
-    .delete(deletePost);
 
-router.route("/update").post(updatePost);
+router.route("/:id")
+    .delete(deletePost)
+    .post(updatePost);
 
 //export router to app.js
 module.exports = router;
