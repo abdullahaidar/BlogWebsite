@@ -48,7 +48,7 @@ const App = (props) => {
     const updatePost = async (post) => {
         console.log(post._id)
         try {
-            axios.post(`http://localhost:3001/posts/${post._id}`, { "title": post.title, "content": post.content }).then(() => sendGetRequest())
+            axios.put(`http://localhost:3001/posts/${post._id}`, { "title": post.title, "content": post.content }).then(() => sendGetRequest())
         } catch (error) {
 
         }
