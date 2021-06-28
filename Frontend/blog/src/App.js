@@ -8,6 +8,8 @@ import Post from './components/Post';
 import AddPost from './components/AddPost';
 import PostList from './components/PostList';
 import EditPost from './components/EditPost';
+import { LogIn } from './components/LogIn';
+import { SignUp } from './components/SignUp';
 
 
 const axios = require('axios').default;
@@ -58,6 +60,7 @@ const App = (props) => {
         <div>
             <Router>
                 <NavigationBar />
+                {/* <h2>Hello { localStorage.getItem('user')}</h2> */}
                 <Switch>
                     <Route exact path='/'>
                         <PostList posts={posts} deletePost={deletePost} />
@@ -67,6 +70,12 @@ const App = (props) => {
                     </Route>
                     <Route path='/new'>
                         <AddPost addPost={addPost} post={{ title: '', content: '' }} />
+                    </Route>
+                    <Route path='/signin'>
+                        <LogIn />
+                    </Route>
+                    <Route path='/signup'>
+                        <SignUp />
                     </Route>
                     <Route path='/edit' >
                         <EditPost posts={posts} updatePost={updatePost} />
