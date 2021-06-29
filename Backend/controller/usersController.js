@@ -17,7 +17,7 @@ exports.addUser = async (req, res, next) => {
         /** SEND BACK THE TOKEN WITH PUBLIC FIELDS */
         const data = user.getPublicFields();
         res.status(200)
-            .header("x-auth", token)
+            .header("auth", token)
             .send(data);
     } catch (e) {
         next(e);
@@ -40,7 +40,7 @@ exports.loginUser = async (req, res, next) => {
         const data = user.getPublicFields();
         // RESPOND WITH TOKEN AND PUBLIC FIELDS
         res.status(200)
-            .header("x-auth", token)
+            .header("auth", token)
             .send(data);
     } catch (e) {
         next(e);

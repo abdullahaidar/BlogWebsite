@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
+
 
 const UserSchema = new Schema(
     {
@@ -59,13 +61,24 @@ UserSchema.methods.getPublicFields = function () {
     return returnObject;
 }
 /** CHECK PASSWORD */
-UserSchema.methods.checkPassword = function (password) {
+UserSchema.methods.checkPassword = async function (password) {
     const user = this;
-    if (user.password === password) {
-        return true;
-    } else {
-        return false;
-    }
+    // if (user.password === password) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+    return await bcrypt.compare(password, user.password)
 }
+// HOOK TO BE EXECUTED BETWEEN MIDDLEWARES
+UserSchema.pre("save", async function (next) {
+    // CHECK IF THE PASSWORD HAS CHANGED (ADDED)
+    if (this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password, 10);
+    } else {
+        // LEAVE WITHOUT CHANGES
+        next();
+    }
+});
 
 module.exports = mongoose.model("User", UserSchema);

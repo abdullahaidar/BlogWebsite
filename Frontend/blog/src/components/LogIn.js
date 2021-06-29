@@ -13,11 +13,14 @@ export const LogIn = () => {
         event.preventDefault();
         // setEmail(event.target.value); no need 
         // setPassword(event.target.value);
-        console.log(email);
-        console.log(password);
+        // console.log(email);
+        // console.log(password);
         try {
-            await axios.post('http://localhost3001/users/login', { "email": email, "password": password })
-
+            const response = await axios.post('http://localhost:3001/users/login', { "email": email, "password": password })
+            // .then(response => console.log(response.headers))
+            // .then(response => localStorage.setItem('token', response.headers.get('auth')))
+            // console.log(response.headers)
+            localStorage.setItem('token', response.headers.auth)
         } catch (error) {
         }
 

@@ -4,9 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const { setCors } = require('./middleware/security')
 
-//import of security middleware
-const cors = require('cors');
 
 const app = express();
 
@@ -29,7 +28,7 @@ const postsRouter = require('./routes/posts');
 
 
 // Set CORS to omit security errors
-app.use(cors());
+app.use(setCors);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
